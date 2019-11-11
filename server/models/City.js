@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const CitySchema = new Schema({
-  city: {
+  city_name: {
     type: String
   },
   country: {
@@ -16,5 +16,37 @@ const CitySchema = new Schema({
     }
   ]
 });
+
+CitySchema.statics.addGym = (
+  id,
+  address,
+  name,
+  phone_number,
+  website,
+  gym_type,
+  rating
+) => {
+  const City = mongoose.model("City");
+
+  return this.findById(id).then(city => {
+    const gym = new Gym({
+      address,
+      name,
+      phone_number,
+      website,
+      gym_type,
+      rating,
+      city
+    });
+    city.gym.push(gym);
+    return Promise.all([gym.save(), city.save()]).then(([gym, city]) => gym);
+  });
+};
+
+CitySchema.statics.findGym = id => {
+  return this.findById(id)
+    .populate("gym")
+    .then(city => city.gym);
+};
 
 mongoose.model("City", CitySchema);

@@ -21,6 +21,10 @@ const GymSchema = new Schema({
   },
   rating: {
     type: String
+  },
+  city: {
+    type: Schema.Types.ObjectId,
+    ref: "City"
   }
 });
 
