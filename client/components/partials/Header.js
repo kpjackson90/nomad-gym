@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
+
+import logo from "../../img/nomad_gym.png";
 
 class Header extends Component {
   render() {
@@ -13,18 +15,9 @@ class Header extends Component {
             <button className="navbar-toggler" type="button">
               &#9776;
             </button>
-            <a className="navbar-brand" href="../index.html">
-              <img
-                className="logo-dark"
-                src="../assets/img/logo-dark.png"
-                alt="logo"
-              />
-              <img
-                className="logo-light"
-                src="../assets/img/logo-light.png"
-                alt="logo"
-              />
-            </a>
+            <Link to="/" className="navbar-brand">
+              <img className="logo-light" src={logo} alt="logo" />
+            </Link>
           </div>
 
           <section className="navbar-mobile">

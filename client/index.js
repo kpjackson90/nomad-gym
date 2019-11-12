@@ -8,6 +8,8 @@ import { ApolloProvider } from "react-apollo";
 
 import App from "./components/App";
 import Home from "./components/home";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 const client = new ApolloClient({
   dataIdFromObject: o => o.id
@@ -19,6 +21,8 @@ const Root = () => {
       <Router history={hashHistory}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
         </Route>
       </Router>
     </ApolloProvider>
