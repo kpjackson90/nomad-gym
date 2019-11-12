@@ -12,7 +12,7 @@ const backImg = {
 
 class Home extends Component {
   renderCountries() {
-    return this.props.data.countries.map(({ id, country }) => {
+    return this.props.data.countries.map(({ id, country, city }) => {
       return (
         <div key={id} className="col-12 col-lg-4">
           <div
@@ -21,8 +21,10 @@ class Home extends Component {
             data-overlay="6"
           >
             <div className="card-body text-center flex-grow-0">
-              <h5 className="card-title mb-0">{country}</h5>
-              <small>50 gyms</small>
+              <Link to={`/countries/${id}`}>
+                <h5 className="card-title mb-0">{country}</h5>
+              </Link>
+              <small>Number of cities:- {city.length}</small>
             </div>
           </div>
         </div>

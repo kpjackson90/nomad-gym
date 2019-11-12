@@ -1,12 +1,13 @@
 import gql from "graphql-tag";
 
 export default gql`
-  {
-    countries {
+  query GymQuery($id: ID!) {
+    city(id: $id) {
       id
-      country
-      city {
+      city_name
+      gym {
         id
+        name
       }
     }
   }
