@@ -1,6 +1,8 @@
+const mongoose = require("mongoose");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
 const CityType = require("./city_type");
+const Country = mongoose.model("Country");
 
 const CountryType = new GraphQLObjectType({
   name: "CountryType",
@@ -10,7 +12,7 @@ const CountryType = new GraphQLObjectType({
     city: {
       type: new GraphQLList(CityType),
       resolve(parentValue) {
-        return CountryType.findCity(parentValue.id);
+        return Country.findCity(parentValue.id);
       }
     }
   })

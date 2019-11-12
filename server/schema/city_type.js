@@ -12,7 +12,7 @@ const CityType = new GraphQLObjectType({
     gym: {
       type: new GraphQLList(GymType),
       resolve(parentValue) {
-        return City.findLyrics(parentValue.id);
+        return City.findGym(parentValue.id);
       }
     },
     country: {
@@ -21,7 +21,6 @@ const CityType = new GraphQLObjectType({
         return Country.findById(parentValue)
           .populate("country")
           .then(city => {
-            console.log(city);
             return city.country;
           });
       }

@@ -17,7 +17,7 @@ const CitySchema = new Schema({
   ]
 });
 
-CitySchema.statics.addGym = (
+CitySchema.statics.addGym = function(
   id,
   address,
   name,
@@ -25,8 +25,8 @@ CitySchema.statics.addGym = (
   website,
   gym_type,
   rating
-) => {
-  const City = mongoose.model("City");
+) {
+  const Gym = mongoose.model("Gym");
 
   return this.findById(id).then(city => {
     const gym = new Gym({
@@ -39,11 +39,11 @@ CitySchema.statics.addGym = (
       city
     });
     city.gym.push(gym);
-    return Promise.all([gym.save(), city.save()]).then(([gym, city]) => gym);
+    return Promise.all([gym.save(), city.save()]).then(([gym, city]) => city);
   });
 };
 
-CitySchema.statics.findGym = id => {
+CitySchema.statics.findGym = function(id) {
   return this.findById(id)
     .populate("gym")
     .then(city => city.gym);
