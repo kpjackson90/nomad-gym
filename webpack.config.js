@@ -21,11 +21,11 @@ module.exports = {
         test: /\.css$/
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/,
+        test: /\.(jpe?g|png|gif|svg|eot|ttf|woff|woff2)$/,
         use: [
           {
             loader: "url-loader",
-            options: { limit: 40000 }
+            options: { limit: 4000000 }
           },
           "image-webpack-loader"
         ]
