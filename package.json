@@ -2,6 +2,9 @@
   "name": "nomad-gym",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "11.12.0"
+  },
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js --ignore client",
