@@ -7,7 +7,7 @@ import ApolloClient from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 
 import App from "./components/App";
-import Home from "./components/home";
+import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import SingleCountry from "./components/SingleCountry";
