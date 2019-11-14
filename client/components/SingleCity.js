@@ -15,8 +15,7 @@ class SingleCity extends Component {
       return <div>Loading...</div>;
     }
 
-    /*
-    return this.props.data.city.gym.map(({ id, city_name, gym }) => {
+    return this.props.data.city.gym.map(({ id, name, rating }) => {
       return (
         <div key={id} className="col-12 col-lg-4">
           <div
@@ -24,26 +23,31 @@ class SingleCity extends Component {
             style={backImg}
             data-overlay="6"
           >
-            <div className="card-boyd text-center flex-grow-0">
+            <div className="card-body text-center flex-grow-0">
               <Link to={`/gym/${id}`}>
-                <h5 className="card-title mb-0">{gym.name}</h5>
+                <h5 className="card-title mb-0">{name}</h5>
               </Link>
+              <small>{rating}</small>
             </div>
           </div>
         </div>
       );
     });
-    */
   }
 
   render() {
+    if (!this.props.data.city) {
+      return <div>Loading...</div>;
+    }
     return (
       <div>
         <header className="header text-white" style={backImg} data-overlay="5">
           <div className="container text-center">
             <div className="row">
               <div className="col-md-8 mx-auto py-7">
-                <h1 className="display-3 fw-500">test</h1>
+                <h1 className="display-3 fw-500">
+                  {this.props.data["city"].city_name}
+                </h1>
               </div>
             </div>
           </div>

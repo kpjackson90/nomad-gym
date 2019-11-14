@@ -34,6 +34,7 @@ class SingleCountry extends Component {
       );
     });
   }
+
   render() {
     if (!this.props.data.country) {
       return <div>Loading...</div>;

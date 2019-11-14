@@ -12,6 +12,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import SingleCountry from "./components/SingleCountry";
 import SingleCity from "./components/SingleCity";
+import SingleGym from "./components/SingleGym";
 
 const client = new ApolloClient({
   dataIdFromObject: o => o.id
@@ -25,6 +26,7 @@ const Root = () => {
           <IndexRoute component={Home} />
           <Route path="/countries/:id" component={SingleCountry} />
           <Route path="/city/:id" component={SingleCity} />
+          <Route path="/gym/:id" component={SingleGym} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
         </Route>
