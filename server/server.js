@@ -5,6 +5,7 @@ const expressGraphQL = require("express-graphql");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 const schema = require("./schema/schema");
+const path = require("path");
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.MONGO_URI, {
@@ -28,9 +29,16 @@ app.use(
   })
 );
 
-const webpackMiddleware = require("webpack-dev-middleware");
-const webpack = require("webpack");
-const webpackConfig = require("../webpack.config.js");
-app.use(webpackMiddleware(webpack(webpackConfig)));
+if (process.env.NODE_ENV !== "production") {
+  const webpackMiddleware = require("webpack-dev-middleware");
+  const webpack = require("webpack");
+  const webpackConfig = require("../webpack.config.js");
+  app.use(webpackMiddleware(webpack(webpackConfig)));
+} else {
+  app.use(express.static("build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build/index.html"));
+  });
+}
 
 module.exports = app;
