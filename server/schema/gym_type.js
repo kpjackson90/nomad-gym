@@ -12,6 +12,7 @@ const GymType = new GraphQLObjectType({
     phone_number: { type: GraphQLInt },
     website: { type: GraphQLString },
     gym_type: { type: GraphQLString },
+    gym_image: { type: GraphQLString },
     rating: { type: GraphQLString },
     city: {
       type: require("./city_type"),

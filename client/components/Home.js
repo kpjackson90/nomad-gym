@@ -12,24 +12,27 @@ const backImg = {
 
 class Home extends Component {
   renderCountries() {
-    return this.props.data.countries.map(({ id, country, city }) => {
-      return (
-        <div key={id} className="col-12 col-lg-4">
-          <div
-            className="card text-white bg-img justify-content-center"
-            style={backImg}
-            data-overlay="6"
-          >
-            <div className="card-body text-center flex-grow-0">
-              <Link to={`/countries/${id}`}>
-                <h5 className="card-title mb-0">{country}</h5>
-              </Link>
-              <small>Number of cities:- {city.length}</small>
+    return this.props.data.countries.map(
+      ({ id, country, city, country_image }) => {
+        const bgImg = { backgroundImage: `url("${country_image}")` };
+        return (
+          <div key={id} className="col-12 col-lg-4">
+            <div
+              className="card text-white bg-img justify-content-center"
+              style={bgImg}
+              data-overlay="6"
+            >
+              <div className="card-body text-center flex-grow-0">
+                <Link to={`/countries/${id}`}>
+                  <h5 className="card-title mb-0">{country}</h5>
+                </Link>
+                <small>Number of cities:- {city.length}</small>
+              </div>
             </div>
           </div>
-        </div>
-      );
-    });
+        );
+      }
+    );
   }
   render() {
     if (this.props.data.loading) {

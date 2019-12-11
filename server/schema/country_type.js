@@ -9,6 +9,7 @@ const CountryType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     country: { type: GraphQLString },
+    country_image: { type: GraphQLString },
     city: {
       type: new GraphQLList(CityType),
       resolve(parentValue) {

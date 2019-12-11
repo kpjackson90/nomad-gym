@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 const schema = require("./schema/schema");
 const path = require("path");
 
+/*Database Setup*/
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.MONGO_URI, {
   useNewUrlParser: true,

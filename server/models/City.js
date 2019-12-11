@@ -14,7 +14,10 @@ const CitySchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Gym"
     }
-  ]
+  ],
+  city_image: {
+    type: String
+  }
 });
 
 CitySchema.statics.addGym = function(

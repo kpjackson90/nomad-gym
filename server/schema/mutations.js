@@ -12,20 +12,22 @@ const mutation = new GraphQLObjectType({
     addCountry: {
       type: CountryType,
       args: {
-        country: { type: GraphQLString }
+        country: { type: GraphQLString },
+        country_image: { type: GraphQLString }
       },
-      resolve(parentValue, { country }) {
-        return new Country({ country }).save();
+      resolve(parentValue, { country, country_image }) {
+        return new Country({ country, country_image }).save();
       }
     },
     addCityToCountry: {
       type: CountryType,
       args: {
         city_name: { type: GraphQLString },
+        city_image: { type: GraphQLString },
         countryId: { type: GraphQLID }
       },
-      resolve(parentValue, { city_name, countryId }) {
-        return Country.addCity(countryId, city_name);
+      resolve(parentValue, { city_name, countryId, city_image }) {
+        return Country.addCity(countryId, city_name, city_image);
       }
     },
     addGymToCity: {
@@ -37,11 +39,12 @@ const mutation = new GraphQLObjectType({
         phone_number: { type: GraphQLString },
         website: { type: GraphQLString },
         gym_type: { type: GraphQLString },
-        rating: { type: GraphQLString }
+        rating: { type: GraphQLString },
+        gym_image: { type: GraphQLString }
       },
       resolve(
         parentValue,
-        { cityId, address, name, phone, website, gym_type, rating }
+        { cityId, address, name, phone, website, gym_type, rating, gym_image }
       ) {
         return City.addGym(
           cityId,
@@ -50,7 +53,8 @@ const mutation = new GraphQLObjectType({
           phone,
           website,
           gym_type,
-          rating
+          rating,
+          gym_image
         );
       }
     } // TODO: Add Edit and Delete mutations

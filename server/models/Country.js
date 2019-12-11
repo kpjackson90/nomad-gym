@@ -7,6 +7,9 @@ const CountrySchema = new Schema(
       type: String,
       unique: true
     },
+    country_image: {
+      type: String
+    },
     city: [
       {
         type: Schema.Types.ObjectId,

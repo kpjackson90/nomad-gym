@@ -25,6 +25,9 @@ const GymSchema = new Schema({
   city: {
     type: Schema.Types.ObjectId,
     ref: "City"
+  },
+  gym_image: {
+    type: String
   }
 });
 
