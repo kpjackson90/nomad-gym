@@ -7,13 +7,32 @@
     "npm": "6.13.0"
   },
   "main": "index.js",
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "./dist"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "html"
+    ],
+    "moduleNameMapper": {
+      "^mongoose$": "<rootDir>/node_modules/mongoose"
+    },
+    "setupFilesAfterEnv": [
+      "./server/tests/config/databaseConnection.js"
+    ]
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js --ignore client",
     "clean": "rimraf build",
     "build": "npm run clean && webpack",
     "serve": "webpack-dev-server --port $PORT --host 0.0.0.0",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
+    "test": "jest --coverage --forceExit --detectOpenHandles",
+    "test:watch": "jest --watch --coverage --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -24,11 +43,6 @@
   "dependencies": {
     "apollo-client": "^0.8.2",
     "axios": "^0.19.0",
-    "babel-core": "^6.17.0",
-    "babel-loader": "^6.2.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.1.0",
-    "babel-preset-react": "^6.24.1",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.18.0",
     "css-loader": "^3.2.0",
@@ -47,8 +61,22 @@
     "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
     "url-loader": "^2.2.0",
-    "webpack": "^2.2.0-rc.0",
-    "webpack-dev-middleware": "^1.9.0",
-    "webpack-dev-server": "^3.1.11"
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.10.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "jest": "^25.1.0",
+    "jest-cli": "^25.1.0",
+    "mongodb-memory-server": "^6.2.4",
+    "supertest": "^4.0.2"
   }
 }

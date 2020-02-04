@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const GymSchema = new Schema({
@@ -24,11 +24,17 @@ const GymSchema = new Schema({
   },
   city: {
     type: Schema.Types.ObjectId,
-    ref: "City"
+    ref: 'City'
   },
   gym_image: {
+    type: String
+  },
+  longitude: {
+    type: String
+  },
+  latitude: {
     type: String
   }
 });
 
-mongoose.model("Gym", GymSchema);
+mongoose.model('Gym', GymSchema);

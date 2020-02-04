@@ -4,12 +4,6 @@ import { Link } from "react-router";
 import { graphql } from "react-apollo";
 import fetchCountriesQuery from "../queries/fetchCountries";
 
-import Background from "../img/kate-trysh-3cCe37VGDiQ-unsplash.jpg";
-
-const backImg = {
-  backgroundImage: `url("${Background}")`
-};
-
 class Home extends Component {
   renderCountries() {
     return this.props.data.countries.map(

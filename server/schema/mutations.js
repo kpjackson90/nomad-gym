@@ -1,13 +1,13 @@
-const graphql = require("graphql");
+const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLString, GraphQLID } = graphql;
-const mongoose = require("mongoose");
-const Country = mongoose.model("Country");
-const City = mongoose.model("City");
-const CityType = require("./city_type");
-const CountryType = require("./country_type");
+const mongoose = require('mongoose');
+const Country = mongoose.model('Country');
+const City = mongoose.model('City');
+const CityType = require('./city_type');
+const CountryType = require('./country_type');
 
 const mutation = new GraphQLObjectType({
-  name: "Mutation",
+  name: 'Mutation',
   fields: {
     addCountry: {
       type: CountryType,
@@ -40,11 +40,24 @@ const mutation = new GraphQLObjectType({
         website: { type: GraphQLString },
         gym_type: { type: GraphQLString },
         rating: { type: GraphQLString },
-        gym_image: { type: GraphQLString }
+        gym_image: { type: GraphQLString },
+        longitude: { type: GraphQLString },
+        latitude: { type: GraphQLString }
       },
       resolve(
         parentValue,
-        { cityId, address, name, phone, website, gym_type, rating, gym_image }
+        {
+          cityId,
+          address,
+          name,
+          phone,
+          website,
+          gym_type,
+          rating,
+          gym_image,
+          longitude,
+          latitude
+        }
       ) {
         return City.addGym(
           cityId,
@@ -54,7 +67,9 @@ const mutation = new GraphQLObjectType({
           website,
           gym_type,
           rating,
-          gym_image
+          gym_image,
+          longitude,
+          latitude
         );
       }
     } // TODO: Add Edit and Delete mutations

@@ -1,33 +1,33 @@
-var webpack = require("webpack");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var path = require("path");
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 
 module.exports = {
-  entry: "./client/index.js",
+  entry: './client/index.js',
   output: {
-    path: path.resolve(__dirname, "build/"),
-    publicPath: "/",
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'build/'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        use: "babel-loader",
+        use: 'babel-loader',
         test: /\.js$/,
         exclude: /node_modules/
       },
       {
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
         test: /\.css$/
       },
       {
         test: /\.(jpe?g|png|gif|svg|eot|ttf|woff|woff2)$/,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: { limit: 4000000 }
           },
-          "image-webpack-loader"
+          'image-webpack-loader'
         ]
       }
     ]
@@ -35,9 +35,15 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
+  mode: 'production',
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "client/index.html"
+      template: 'client/index.html'
     })
   ]
 };
