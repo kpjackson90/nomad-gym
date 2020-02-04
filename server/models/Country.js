@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const CountrySchema = new Schema(
@@ -13,7 +13,7 @@ const CountrySchema = new Schema(
     city: [
       {
         type: Schema.Types.ObjectId,
-        ref: "City"
+        ref: 'City'
       }
     ]
   },
@@ -22,11 +22,11 @@ const CountrySchema = new Schema(
   }
 );
 
-CountrySchema.statics.addCity = function(id, city_name) {
-  const City = mongoose.model("City");
+CountrySchema.statics.addCity = function(id, city_name, city_image) {
+  const City = mongoose.model('City');
 
   return this.findById(id).then(country => {
-    const city = new City({ city_name, country });
+    const city = new City({ city_name, country, city_image });
     country.city.push(city);
     return Promise.all([city.save(), country.save()]).then(
       ([city, country]) => country
@@ -36,8 +36,8 @@ CountrySchema.statics.addCity = function(id, city_name) {
 
 CountrySchema.statics.findCity = function(id) {
   return this.findById(id)
-    .populate("city")
+    .populate('city')
     .then(country => country.city);
 };
 
-mongoose.model("Country", CountrySchema);
+mongoose.model('Country', CountrySchema);

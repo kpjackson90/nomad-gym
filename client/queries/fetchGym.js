@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export default gql`
   query GymQuery($id: ID!) {
@@ -10,6 +10,7 @@ export default gql`
       website
       gym_type
       rating
+      gym_image
     }
   }
 `;
